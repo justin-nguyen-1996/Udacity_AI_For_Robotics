@@ -7,4 +7,5 @@ Material focuses on robotics and includes:
   * localization
   * tracking and control
   * extensive programming assignments
-https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373
+  
+Course Website: https://www.udacity.com/course/artificial-intelligence-for-robotics--cs373
