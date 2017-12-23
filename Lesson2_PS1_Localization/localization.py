@@ -44,20 +44,28 @@
 #  [1,0] - down
 #  [-1,0] - up
 
+import numpy as np
+
 def measure( p, colors, mes, sensor_right ):
-    
+    print ""
 
 def move( p, colors, motions, p_move ):
-    for motion in motions
-        num_rows = len(p)
-        num_cols = len(p[0])
-        new_row = num_rows + 
+    for motion in motions:
+        move_failed = p * (1-p_move) # move failed
+        if motion[0] != 0:
+            np.roll(p, motion[0], axis=0)
+        elif motion[1] != 0:
+            np.roll(p, motion[1], axis=1)
+        move_succeeded = p * p_move
+        p = move_failed + move_succeeded
+ 
 
 def localize(colors,measurements,motions,sensor_right,p_move):
     
     # initializes p to a uniform distribution over a grid of the same dimensions as colors
     pinit = 1.0 / float(len(colors)) / float(len(colors[0]))
     p = [[pinit for row in range(len(colors[0])) ]for col in range(len(colors))]
+    p = np.array(p)
     
     # >>> Insert your code here <<<
     move( p, colors, motions, p_move )
