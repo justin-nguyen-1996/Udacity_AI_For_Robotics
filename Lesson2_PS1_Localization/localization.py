@@ -47,18 +47,20 @@
 import numpy as np
 
 def measure( p, colors, mes, sensor_right ):
-    print ""
+    p[ colors==mes ] *= sensor_right 
+    p[ colors!=mes ] *= (1-sensor_right)
+    p /= np.sum(p)
+    return p
 
-def move( p, colors, motions, p_move ):
-    for motion in motions:
-        move_failed = p * (1-p_move) # move failed
-        if motion[0] != 0:
-            np.roll(p, motion[0], axis=0)
-        elif motion[1] != 0:
-            np.roll(p, motion[1], axis=1)
-        move_succeeded = p * p_move
-        p = move_failed + move_succeeded
- 
+def move( p, colors, motion, p_move ):
+    move_failed = p * (1-p_move)
+    if motion[0] != 0:
+        p = np.roll(p, motion[0], axis=0) # move up/down
+    elif motion[1] != 0:
+        p = np.roll(p, motion[1], axis=1) # move left/right
+    move_succeeded = p * p_move
+    p = move_failed + move_succeeded
+    return p
 
 def localize(colors,measurements,motions,sensor_right,p_move):
     
@@ -66,10 +68,14 @@ def localize(colors,measurements,motions,sensor_right,p_move):
     pinit = 1.0 / float(len(colors)) / float(len(colors[0]))
     p = [[pinit for row in range(len(colors[0])) ]for col in range(len(colors))]
     p = np.array(p)
+    colors = np.array(colors)
     
-    # >>> Insert your code here <<<
-    move( p, colors, motions, p_move )
-    measure( p, colors, measurements, sensor_right )
+    # repeatedly move and recheck the sensors
+    for i in range(len(motions)):
+        motion = motions[i]
+        measurement = measurements[i]
+        p = move( p, colors, motion, p_move )
+        p = measure( p, colors, measurement, sensor_right )
     
     return p
 
@@ -78,6 +84,7 @@ def show(p):
     print '[' + ',\n '.join(rows) + ']'
     
 #############################################################
+
 # For the following test case, your output should be 
 # [[0.01105, 0.02464, 0.06799, 0.04472, 0.02465],
 #  [0.00715, 0.01017, 0.08696, 0.07988, 0.00935],
@@ -92,22 +99,35 @@ colors = [['R','G','G','R','R'],
 measurements = ['G','G','G','G','G']
 motions = [[0,0],[0,1],[1,0],[1,0],[0,1]]
 p = localize(colors,measurements,motions,sensor_right = 0.7, p_move = 0.8)
+correct_answer = (
+[[0.01105, 0.02464, 0.06799, 0.04472, 0.02465],
+ [0.00715, 0.01017, 0.08696, 0.07988, 0.00935],
+ [0.00739, 0.00894, 0.11272, 0.35350, 0.04065],
+ [0.00910, 0.00715, 0.01434, 0.04313, 0.03642]])
 show(p) # displays your answer
+show(correct_answer)
+
 #############################################################
 
 # test 1
-colors = [['G', 'G', 'G'],
-          ['G', 'R', 'G'],
-          ['G', 'G', 'G']]
-measurements = ['R']
-motions = [[0,0]]
-sensor_right = 1.0
-p_move = 1.0
-p = localize(colors,measurements,motions,sensor_right,p_move)
-correct_answer = (
-    [[0.0, 0.0, 0.0],
-     [0.0, 1.0, 0.0],
-     [0.0, 0.0, 0.0]])
+# colors = [['G', 'G', 'G'],
+#           ['G', 'R', 'G'],
+#           ['G', 'G', 'G']]
+# measurements = ['R']
+# motions = [[0,0]]
+# sensor_right = 1.0
+# p_move = 1.0
+# p = localize(colors,measurements,motions,sensor_right,p_move)
+# correct_answer = (
+#     [[0.0, 0.0, 0.0],
+#      [0.0, 1.0, 0.0],
+#      [0.0, 0.0, 0.0]])
+# show(p)
+# show(correct_answer)
+# print p == correct_answer
+# print np.all( p==correct_answer )
+
+#############################################################
 
 # test 2
 # colors = [['G', 'G', 'G'],
@@ -122,6 +142,12 @@ correct_answer = (
 #     [[0.0, 0.0, 0.0],
 #      [0.0, 0.5, 0.5],
 #      [0.0, 0.0, 0.0]])
+# show(p)
+# show(correct_answer)
+# print p == correct_answer
+# print np.all( p==correct_answer )
+
+#############################################################
 
 # test 3
 # colors = [['G', 'G', 'G'],
@@ -136,6 +162,12 @@ correct_answer = (
 #     [[0.06666666666, 0.06666666666, 0.06666666666],
 #      [0.06666666666, 0.26666666666, 0.26666666666],
 #      [0.06666666666, 0.06666666666, 0.06666666666]])
+# show(p)
+# show(correct_answer)
+# print p == correct_answer
+# print np.all( p==correct_answer )
+
+#############################################################
 
 # test 4
 # colors = [['G', 'G', 'G'],
@@ -150,6 +182,12 @@ correct_answer = (
 #     [[0.03333333333, 0.03333333333, 0.03333333333],
 #      [0.13333333333, 0.13333333333, 0.53333333333],
 #      [0.03333333333, 0.03333333333, 0.03333333333]])
+# show(p)
+# show(correct_answer)
+# print p == correct_answer
+# print np.all( p==correct_answer )
+
+#############################################################
 
 # test 5
 # colors = [['G', 'G', 'G'],
@@ -164,6 +202,12 @@ correct_answer = (
 #     [[0.0, 0.0, 0.0],
 #      [0.0, 0.0, 1.0],
 #      [0.0, 0.0, 0.0]])
+# show(p)
+# show(correct_answer)
+# print p == correct_answer
+# print np.all( p==correct_answer )
+
+#############################################################
 
 # test 6
 # colors = [['G', 'G', 'G'],
@@ -178,6 +222,12 @@ correct_answer = (
 #     [[0.0289855072, 0.0289855072, 0.0289855072],
 #      [0.0724637681, 0.2898550724, 0.4637681159],
 #      [0.0289855072, 0.0289855072, 0.0289855072]])
+# show(p)
+# show(correct_answer)
+# print p == correct_answer
+# print np.all( p==correct_answer )
+
+#############################################################
 
 # test 7
 # colors = [['G', 'G', 'G'],
@@ -192,3 +242,9 @@ correct_answer = (
 #     [[0.0, 0.0, 0.0],
 #      [0.0, 0.33333333, 0.66666666],
 #      [0.0, 0.0, 0.0]])
+# show(p)
+# show(correct_answer)
+# print p == correct_answer
+# print np.all( p==correct_answer )
+
+#############################################################
