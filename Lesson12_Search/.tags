@@ -1,0 +1,29 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BFS_El	bfs.py	/^class BFS_El:$/;"	c
+__init__	bfs.py	/^    def __init__(self):$/;"	m	class:BFS_El
+add_new_search_locs	bfs.py	/^def add_new_search_locs( search_list, cost ):$/;"	f	function:valid_loc
+as_list	bfs.py	/^    def as_list(self):$/;"	m	class:BFS_El
+copy	bfs.py	/^    def copy(self, orig_el):$/;"	m	class:BFS_El
+cost	bfs.py	/^cost = 1$/;"	v
+delta	bfs.py	/^delta = [[-1, 0], # go up$/;"	v
+delta_name	bfs.py	/^delta_name = ['^', '<', 'v', '>']$/;"	v
+expanded	bfs.py	/^expanded = [[-1, -1, -1, -1, -1, -1],$/;"	v
+found_next_step	bfs.py	/^def found_next_step( search_loc, min_steps ):$/;"	f
+get_path	bfs.py	/^def get_path():$/;"	f
+goal	bfs.py	/^goal = [len(grid)-1, len(grid[0])-1]$/;"	v
+grid	bfs.py	/^grid = [[0, 0, 1, 0, 0, 0],$/;"	v
+init	bfs.py	/^init = [0, 0]$/;"	v
+loc	bfs.py	/^    def loc(self):$/;"	m	class:BFS_El
+np	bfs.py	/^import numpy as np$/;"	i
+path	bfs.py	/^path = [[' ', ' ', ' ', ' ', ' ', ' '],$/;"	v
+reverse_delta_name	bfs.py	/^def reverse_delta_name( delta_name ):$/;"	f
+search	bfs.py	/^def search(grid,init,goal,cost):$/;"	f
+search_history	bfs.py	/^search_history = [[-1, -1, -1, -1, -1, -1],$/;"	v
+searched_already	bfs.py	/^searched_already = [[0, 0, 0, 0, 0, 0],$/;"	v
+set	bfs.py	/^    def set(self, path_length, r, c):$/;"	m	class:BFS_El
+valid_loc	bfs.py	/^def valid_loc( loc, grid ):$/;"	f
