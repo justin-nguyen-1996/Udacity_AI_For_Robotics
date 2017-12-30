@@ -16,11 +16,11 @@
 #   0 = Navigable space
 #   1 = Occupied space
 
-# grid = [[0, 0, 1, 0, 0, 0],
-#         [0, 0, 1, 0, 0, 0],
-#         [0, 0, 0, 0, 1, 0],
-#         [0, 0, 1, 1, 1, 0],
-#         [0, 0, 0, 0, 1, 0]]
+grid = [[0, 0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0],
+        [0, 0, 1, 1, 1, 0],
+        [0, 0, 0, 0, 1, 0]]
 
 # grid = [[0, 0, 1, 0, 0, 0],
 #         [0, 0, 1, 0, 0, 0],
@@ -28,17 +28,23 @@
 #         [0, 0, 1, 0, 1, 0],
 #         [0, 0, 0, 0, 1, 0]]
 
-grid = [[0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 1, 0, 0],
-        [0, 1, 0, 1, 0, 0],
-        [0, 1, 0, 1, 0, 0],
-        [0, 0, 0, 1, 0, 0]]
+# grid = [[0, 1, 0, 0, 0, 0],
+#         [0, 1, 0, 1, 0, 0],
+#         [0, 1, 0, 1, 0, 0],
+#         [0, 1, 0, 1, 0, 0],
+#         [0, 0, 0, 1, 0, 0]]
 
 # grid = [[0, 1, 0, 0, 0, 0],
 #         [0, 1, 0, 1, 0, 0],
 #         [0, 1, 0, 1, 0, 0],
 #         [0, 1, 0, 1, 0, 0],
 #         [0, 1, 0, 1, 0, 0]]
+
+# grid = [[0, 0, 1, 0, 0, 0],
+#         [0, 0, 0, 0, 0, 0],
+#         [0, 0, 1, 0, 1, 0],
+#         [0, 0, 1, 0, 1, 0],
+#         [0, 0, 1, 0, 1, 0]]
 
 init = [0, 0]
 goal = [len(grid)-1, len(grid[0])-1]
@@ -105,20 +111,11 @@ def search(grid,init,goal,cost):
     init_el = BFS_El();
     init_el.set( 0, init[0], init[1] )
     search_list = [init_el]
-#     temp_counter = 0
     while True:
         if len(search_list) == 0:
             return 'fail'
         search_el = search_list[0]
         search_loc = search_el.loc()
-#         print; print("search_loc: "); print(search_loc);
-#         if temp_counter == 6:
-#             pass
-#             assert 3>4 # TEMP
-#         else:
-#             temp_counter += 1
-#             import numpy as np
-#             print; print("np.array(searched_already): "); print(np.array(searched_already));
         if search_loc == goal:
             return search_el.as_list()
         else:
