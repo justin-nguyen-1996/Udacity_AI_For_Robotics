@@ -18,11 +18,11 @@ import numpy as np
 #   0 = Navigable space
 #   1 = Occupied space
 
-# grid = [[0, 0, 1, 0, 0, 0],
-#         [0, 0, 1, 0, 0, 0],
-#         [0, 0, 0, 0, 1, 0],
-#         [0, 0, 1, 1, 1, 0],
-#         [0, 0, 0, 0, 1, 0]]
+grid = [[0, 0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0],
+        [0, 0, 1, 1, 1, 0],
+        [0, 0, 0, 0, 1, 0]]
 
 # grid = [[0, 0, 1, 0, 0, 0],
 #         [0, 0, 1, 0, 0, 0],
@@ -54,11 +54,11 @@ import numpy as np
 #         [1, 1, 1, 1, 0],
 #         [0, 0, 0, 1, 0]]
 
-grid = [[0, 0, 1, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 1, 0, 1, 0],
-        [0, 0, 1, 0, 1, 0],
-        [0, 0, 1, 0, 1, 0]]
+# grid = [[0, 0, 1, 0, 0, 0],
+#         [0, 0, 0, 0, 0, 0],
+#         [0, 0, 1, 0, 1, 0],
+#         [0, 0, 1, 0, 1, 0],
+#         [0, 0, 1, 0, 1, 0]]
 
 init = [0, 0]
 goal = [len(grid)-1, len(grid[0])-1]
@@ -85,8 +85,8 @@ expanded = [[-1, -1, -1, -1, -1, -1],
             [-1, -1, -1, -1, -1, -1],
             [-1, -1, -1, -1, -1, -1]]
 
-# keep track of how many steps it took to reach each cell
-search_history = [[-1, -1, -1, -1, -1, -1],
+# keep track of motion (represented as an index into `delta`) used to reach each cell
+search_motions = [[-1, -1, -1, -1, -1, -1],
                   [-1, -1, -1, -1, -1, -1],
                   [-1, -1, -1, -1, -1, -1],
                   [-1, -1, -1, -1, -1, -1],
@@ -142,11 +142,12 @@ def valid_loc_reverse_path( loc, grid ):
             and  grid[loc[0]][loc[1]] == 0             \
 
 def add_new_search_locs( search_list, cost ):
-    for motion in delta:
+    for index,motion in enumerate(delta):
         orig_el = search_list[0]
         new_el = BFS_El()
         new_el.set( orig_el.path_length+cost, orig_el.r+motion[0], orig_el.c+motion[1] )
         if valid_loc( new_el.loc(), grid ):
+            search_motions[new_el.r][new_el.c] = index
             search_list.append( new_el )
             searched_already[ new_el.r][new_el.c ] = 1
 
@@ -164,13 +165,11 @@ def search(grid,init,goal,cost):
         if search_loc == goal:
             expanded[search_el.r][search_el.c] = expanded_counter
             expanded_counter += 1
-            search_history[search_el.r][search_el.c] = search_el.path_length
 #             return expanded
             return search_el.as_list()
         else:
             add_new_search_locs( search_list, cost )
             searched_already[search_el.r][search_el.c] = 1
-            search_history[search_el.r][search_el.c] = search_el.path_length
             expanded[search_el.r][search_el.c] = expanded_counter
             expanded_counter += 1
             search_list.pop(0)
@@ -192,20 +191,14 @@ def reverse_delta_name( delta_name ):
         return None
 
 def get_path():
-    print np.array( search_history )
-    min_steps = search_history[goal[0]][goal[1]]
     path[goal[0]][goal[1]] = '*'
     cur_loc = goal
-    for i in range(min_steps):
-        for index,motion in enumerate(delta):
-            search_loc = [ cur_loc[0]+motion[0], cur_loc[1]+motion[1] ]
-            success = valid_loc(search_loc, grid)
-#             print; print("success: "); print(success);
-            if valid_loc_reverse_path(search_loc, grid) and found_next_step(search_loc, min_steps):
-                path[search_loc[0]][search_loc[1]] = reverse_delta_name( delta_name[index] )
-                cur_loc = search_loc
-                continue
-        min_steps -= 1
+    while cur_loc != init:
+        motion_index = search_motions[cur_loc[0]][cur_loc[1]]
+        motion = delta[motion_index]
+        cur_loc[0] -= motion[0]
+        cur_loc[1] -= motion[1]
+        path[cur_loc[0]][cur_loc[1]] = delta_name[motion_index]
     return path
 
 print np.array( search( grid, init, goal, cost ) )

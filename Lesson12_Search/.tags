@@ -23,7 +23,8 @@ np	bfs.py	/^import numpy as np$/;"	i
 path	bfs.py	/^path = [[' ', ' ', ' ', ' ', ' ', ' '],$/;"	v
 reverse_delta_name	bfs.py	/^def reverse_delta_name( delta_name ):$/;"	f
 search	bfs.py	/^def search(grid,init,goal,cost):$/;"	f
-search_history	bfs.py	/^search_history = [[-1, -1, -1, -1, -1, -1],$/;"	v
+search_motions	bfs.py	/^search_motions = [[-1, -1, -1, -1, -1, -1],$/;"	v
 searched_already	bfs.py	/^searched_already = [[0, 0, 0, 0, 0, 0],$/;"	v
 set	bfs.py	/^    def set(self, path_length, r, c):$/;"	m	class:BFS_El
 valid_loc	bfs.py	/^def valid_loc( loc, grid ):$/;"	f
+valid_loc_reverse_path	bfs.py	/^def valid_loc_reverse_path( loc, grid ):$/;"	f	function:valid_loc
