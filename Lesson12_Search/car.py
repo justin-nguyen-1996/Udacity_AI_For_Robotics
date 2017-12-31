@@ -76,7 +76,7 @@ init = [4, 3, 0] # given in the form [row,col,direction]
                 
 goal = [2, 0] # given in the form [row,col]
 
-cost = [2, 1, 20] # cost has 3 values, corresponding to making 
+cost = [2, 1, 8] # cost has 3 values, corresponding to making 
                   # a right turn, no turn, and a left turn
 
 # keep track of the order in which cells were searched
@@ -87,7 +87,7 @@ expanded = [[-1, -1, -1, -1, -1, -1],
             [-1, -1, -1, -1, -1, -1]]
 
 # keep track of motion (represented as an index into `delta`) used to reach each cell
-search_history = [[Logging_Info() for c in range(len(grid[0]))] for r in range(len(grid))]
+search_history = [[[Logging_Info()] for c in range(len(grid[0]))] for r in range(len(grid))]
 
 # keep track of the shortest path
 path = [[' ', ' ', ' ', ' ', ' ', ' '],
@@ -117,7 +117,7 @@ def add_new_search_locs( search_list ):
             history = Logging_Info()
             history.action_index = action_index
             history.motion_index = new_o
-            search_history[new_el.r][new_el.c] = history
+            search_history[new_el.r][new_el.c].append(history)
             search_list.append( new_el )
 
 def search(grid,init,goal,cost):
@@ -125,16 +125,8 @@ def search(grid,init,goal,cost):
     init_el.set( 0, init[0], init[1], init[2] )
     search_list = [init_el]
     expanded_counter = 0
-#     counter = 0
     while True:
-#         print
-#         print "counter: ", counter
-#         print np.array( expanded )
-#         for x in search_list:
-#             print x.loc()
-#         if counter == 20:
-#             assert 3>4 # TEMP
-#         counter += 1
+        print np.array( expanded )
         if len(search_list) == 0: # failed to reach the goal
             print 'fail'
         search_el = search_list[0]
@@ -154,14 +146,26 @@ def find_optimal_path():
     global min_path_cost
     path[goal[0]][goal[1]] = '*'
     cur_loc = goal
-    while cur_loc != init:
-        action_index = search_history[cur_loc[0]][cur_loc[1]].action_index
-        motion_index = search_history[cur_loc[0]][cur_loc[1]].motion_index
+    counter = 0
+#     for x in search_history:
+#         for y in x:
+#             print; print("=====");
+#             for z in y:
+#                 print z.motion_index
+    while cur_loc != [init[0],init[1]]:
+        history = search_history[cur_loc[0]][cur_loc[1]].pop()
+        action_index = history.action_index
+        motion_index = history.motion_index
         motion = forward[motion_index]
+        print; print("action_name[action_index]: "); print(action_name[action_index]);
+        if counter == 20:
+            assert 3>4 # TEMP
+        counter += 1
         cur_loc[0] -= motion[0]
         cur_loc[1] -= motion[1]
         path[cur_loc[0]][cur_loc[1]] = action_name[action_index]
         min_path_cost += cost[action_index]
+        print cur_loc
 
 #######################################################################################
 
@@ -176,7 +180,7 @@ print "min cost to goal: "
 print min_path_cost
 
 print "shortest path: "
-print path
+print np.array( path )
 
 # CORRECT OUTPUT:
 # [[' ', ' ', ' ', 'R', '#', 'R'],
