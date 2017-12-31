@@ -5,49 +5,86 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 BFS_El	bfs.py	/^class BFS_El:$/;"	c
-Search_Element	a_star.py	/^class Search_Element:$/;"	c
+Search_Element	a_star.py	/^class Search_Element: # made a new class to hold the search information desired $/;"	c
+Search_Element	car.py	/^class Search_Element: # made a class to hold the search information$/;"	c
+Search_Element	dynamic_programming.py	/^class Search_Element: # made a new class to hold the search information desired $/;"	c
+__getitem__	a_star.py	/^    def __getitem__(self, key):$/;"	m	class:Search_Element	file:
+__getitem__	car.py	/^    def __getitem__(self):$/;"	m	class:Search_Element	file:
+__getitem__	dynamic_programming.py	/^    def __getitem__(self):$/;"	m	class:Search_Element	file:
 __init__	a_star.py	/^    def __init__(self):$/;"	m	class:Search_Element
 __init__	bfs.py	/^    def __init__(self):$/;"	m	class:BFS_El
+__init__	car.py	/^    def __init__(self):$/;"	m	class:Search_Element
+__init__	dynamic_programming.py	/^    def __init__(self):$/;"	m	class:Search_Element
+action_name	car.py	/^action_name = ['R', '#', 'L']$/;"	v
+actions	car.py	/^actions = [-1, 0, 1]$/;"	v
 add_new_search_locs	a_star.py	/^def add_new_search_locs( search_list, cost ):$/;"	f	function:valid_loc
 add_new_search_locs	bfs.py	/^def add_new_search_locs( search_list, cost ):$/;"	f	function:valid_loc
+add_new_search_locs	car.py	/^def add_new_search_locs( search_list ):$/;"	f	function:valid_loc
+add_new_search_locs	dynamic_programming.py	/^def add_new_search_locs( search_list, cost ):$/;"	f
 as_list	a_star.py	/^    def as_list(self):$/;"	m	class:Search_Element
 as_list	bfs.py	/^    def as_list(self):$/;"	m	class:BFS_El
-copy	bfs.py	/^    def copy(self, orig_el):$/;"	m	class:BFS_El
+as_list	car.py	/^    def as_list(self):$/;"	m	class:Search_Element
+as_list	dynamic_programming.py	/^    def as_list(self):$/;"	m	class:Search_Element
+compute_value	dynamic_programming.py	/^def compute_value(grid,goal,cost):$/;"	f
 cost	a_star.py	/^cost = 1$/;"	v
 cost	bfs.py	/^cost = 1$/;"	v
+cost	car.py	/^cost = [2, 1, 20] # cost has 3 values, corresponding to making $/;"	v
+cost	dynamic_programming.py	/^cost = 1 # the cost associated with moving from a cell to an adjacent one$/;"	v
 delta	a_star.py	/^delta = [[-1, 0], # go up$/;"	v
 delta	bfs.py	/^delta = [[-1, 0], # go up$/;"	v
+delta	dynamic_programming.py	/^delta = [[-1, 0 ], # go up$/;"	v
 delta_name	a_star.py	/^delta_name = ['^', '<', 'v', '>']$/;"	v
 delta_name	bfs.py	/^delta_name = ['^', '<', 'v', '>']$/;"	v
+delta_name	dynamic_programming.py	/^delta_name = ['^', '<', 'v', '>']$/;"	v
 expanded	a_star.py	/^expanded = [[-1, -1, -1, -1, -1, -1],$/;"	v
 expanded	bfs.py	/^expanded = [[-1, -1, -1, -1, -1, -1],$/;"	v
-found_next_step	a_star.py	/^def found_next_step( search_loc, min_steps ):$/;"	f
-found_next_step	bfs.py	/^def found_next_step( search_loc, min_steps ):$/;"	f
+expanded	car.py	/^expanded = [[-1, -1, -1, -1, -1, -1],$/;"	v
+forward	car.py	/^forward = [[-1,  0], # go up$/;"	v
+forward_name	car.py	/^forward_name = ['up', 'left', 'down', 'right']$/;"	v
 get_path	a_star.py	/^def get_path():$/;"	f
 get_path	bfs.py	/^def get_path():$/;"	f
+get_path	car.py	/^def get_path():$/;"	f
 goal	a_star.py	/^goal = [len(grid)-1, len(grid[0])-1]$/;"	v
 goal	bfs.py	/^goal = [len(grid)-1, len(grid[0])-1]$/;"	v
-grid	a_star.py	/^grid = [[0, 0, 1, 0, 0, 0],$/;"	v
-grid	bfs.py	/^grid = [[0, 0, 1, 0, 0, 0],$/;"	v
+goal	car.py	/^goal = [2, 0] # given in the form [row,col]$/;"	v
+goal	dynamic_programming.py	/^goal = [len(grid)-1, len(grid[0])-1]$/;"	v
+grid	a_star.py	/^grid = [[0, 0, 0, 0, 0, 0],$/;"	v
+grid	bfs.py	/^grid = [[0, 1, 0, 0, 0, 0],$/;"	v
+grid	car.py	/^grid = [[1, 1, 1, 0, 0, 0],$/;"	v
+grid	dynamic_programming.py	/^grid = [[0, 0, 1, 0, 0, 0],$/;"	v
+heuristic	a_star.py	/^heuristic = [[9, 8, 7, 6, 5, 4],$/;"	v
 init	a_star.py	/^init = [0, 0]$/;"	v
 init	bfs.py	/^init = [0, 0]$/;"	v
+init	car.py	/^init = [4, 3, 0] # given in the form [row,col,direction]$/;"	v
 loc	a_star.py	/^    def loc(self):$/;"	m	class:Search_Element
 loc	bfs.py	/^    def loc(self):$/;"	m	class:BFS_El
+loc	car.py	/^    def loc(self):$/;"	m	class:Search_Element
+loc	dynamic_programming.py	/^    def loc(self):$/;"	m	class:Search_Element
+min_path_cost	car.py	/^min_path_cost = 0$/;"	v
 np	a_star.py	/^import numpy as np$/;"	i
 np	bfs.py	/^import numpy as np$/;"	i
+np	dynamic_programming.py	/^import numpy as np$/;"	i
 path	a_star.py	/^path = [[' ', ' ', ' ', ' ', ' ', ' '],$/;"	v
 path	bfs.py	/^path = [[' ', ' ', ' ', ' ', ' ', ' '],$/;"	v
-reverse_delta_name	a_star.py	/^def reverse_delta_name( delta_name ):$/;"	f
-reverse_delta_name	bfs.py	/^def reverse_delta_name( delta_name ):$/;"	f
-search	a_star.py	/^def search(grid,init,goal,cost):$/;"	f
+path	car.py	/^path = [[' ', ' ', ' ', ' ', ' ', ' '],$/;"	v
+paths	dynamic_programming.py	/^paths = [[' ', ' ', ' ', ' ', ' ', ' '],$/;"	v
+reverse_motion_index	dynamic_programming.py	/^def reverse_motion_index( motion_index ):$/;"	f	function:valid_loc
+search	a_star.py	/^def search(grid,init,goal,cost,heuristic):$/;"	f
 search	bfs.py	/^def search(grid,init,goal,cost):$/;"	f
+search	car.py	/^def search(grid,init,goal,cost):$/;"	f
+search_cost	a_star.py	/^search_cost = [[-1, -1, -1, -1, -1, -1],$/;"	v
 search_motions	a_star.py	/^search_motions = [[-1, -1, -1, -1, -1, -1],$/;"	v
 search_motions	bfs.py	/^search_motions = [[-1, -1, -1, -1, -1, -1],$/;"	v
+search_motions	car.py	/^search_motions = [[-1, -1, -1, -1, -1, -1],$/;"	v
 searched_already	a_star.py	/^searched_already = [[0, 0, 0, 0, 0, 0],$/;"	v
 searched_already	bfs.py	/^searched_already = [[0, 0, 0, 0, 0, 0],$/;"	v
+searched_already	dynamic_programming.py	/^searched_already = [[0, 0, 0, 0, 0, 0],$/;"	v
 set	a_star.py	/^    def set(self, path_length, r, c, h):$/;"	m	class:Search_Element
 set	bfs.py	/^    def set(self, path_length, r, c):$/;"	m	class:BFS_El
+set	car.py	/^    def set(self, cost, r, c):$/;"	m	class:Search_Element
+set	dynamic_programming.py	/^    def set(self, cost, r, c):$/;"	m	class:Search_Element
 valid_loc	a_star.py	/^def valid_loc( loc, grid ):$/;"	f
 valid_loc	bfs.py	/^def valid_loc( loc, grid ):$/;"	f
-valid_loc_reverse_path	a_star.py	/^def valid_loc_reverse_path( loc, grid ):$/;"	f	function:valid_loc
-valid_loc_reverse_path	bfs.py	/^def valid_loc_reverse_path( loc, grid ):$/;"	f	function:valid_loc
+valid_loc	car.py	/^def valid_loc( loc, grid ):$/;"	f
+valid_loc	dynamic_programming.py	/^def valid_loc( loc, grid ):$/;"	f
+values	dynamic_programming.py	/^values = [[99, 99, 99, 99, 99, 99],$/;"	v
