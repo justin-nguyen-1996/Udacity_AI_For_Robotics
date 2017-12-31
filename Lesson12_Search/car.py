@@ -76,7 +76,7 @@ init = [4, 3, 0] # given in the form [row,col,direction]
                 
 goal = [2, 0] # given in the form [row,col]
 
-cost = [2, 1, 8] # cost has 3 values, corresponding to making 
+cost = [2, 1, 10] # cost has 3 values, corresponding to making 
                   # a right turn, no turn, and a left turn
 
 # keep track of the order in which cells were searched
