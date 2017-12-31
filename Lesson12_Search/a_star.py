@@ -1,17 +1,42 @@
-# bfs.py
-# ----------
+# a_star.py
+# -----------
 # User Instructions:
-# 
-# Define a function, search() that returns a list
-# in the form of [optimal path length, row, col]. For
-# the grid shown below, your function should output
-# [11, 4, 5].
 #
-# If there is no valid path from the start point
-# to the goal, your function should return the string
-# 'fail'
+# Modify the the search function so that it becomes
+# an A* search algorithm as defined in the previous
+# lectures.
+#
+# Your function should return the expanded grid
+# which shows, for each element, the count when
+# it was expanded or -1 if the element was never expanded.
+# 
+# If there is no path from init to goal,
+# the function should return the string 'fail'
+#
+# Modify the function search so that it returns
+# a table of values called expand. This table
+# will keep track of which step each node was
+# expanded.
+#
+# Make sure that the initial cell in the grid 
+# you return has the value 0.
+#
+# Modify the the search function so that it returns
+# a shortest path as follows:
+# 
+# [['>', 'v', ' ', ' ', ' ', ' '],
+#  [' ', '>', '>', '>', '>', 'v'],
+#  [' ', ' ', ' ', ' ', ' ', 'v'],
+#  [' ', ' ', ' ', ' ', ' ', 'v'],
+#  [' ', ' ', ' ', ' ', ' ', '*']]
+#
+# Where '>', '<', '^', and 'v' refer to right, left, 
+# up, and down motions. Note that the 'v' should be 
+# lowercase. '*' should mark the goal cell.
+#
+# You may assume that all test cases for this function
+# will have a path from init to goal.
 # ----------
-
 import numpy as np
 
 # Grid format:
