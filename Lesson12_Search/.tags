@@ -5,26 +5,49 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 BFS_El	bfs.py	/^class BFS_El:$/;"	c
+Search_Element	a_star.py	/^class Search_Element:$/;"	c
+__init__	a_star.py	/^    def __init__(self):$/;"	m	class:Search_Element
 __init__	bfs.py	/^    def __init__(self):$/;"	m	class:BFS_El
+add_new_search_locs	a_star.py	/^def add_new_search_locs( search_list, cost ):$/;"	f	function:valid_loc
 add_new_search_locs	bfs.py	/^def add_new_search_locs( search_list, cost ):$/;"	f	function:valid_loc
+as_list	a_star.py	/^    def as_list(self):$/;"	m	class:Search_Element
 as_list	bfs.py	/^    def as_list(self):$/;"	m	class:BFS_El
 copy	bfs.py	/^    def copy(self, orig_el):$/;"	m	class:BFS_El
+cost	a_star.py	/^cost = 1$/;"	v
 cost	bfs.py	/^cost = 1$/;"	v
+delta	a_star.py	/^delta = [[-1, 0], # go up$/;"	v
 delta	bfs.py	/^delta = [[-1, 0], # go up$/;"	v
+delta_name	a_star.py	/^delta_name = ['^', '<', 'v', '>']$/;"	v
 delta_name	bfs.py	/^delta_name = ['^', '<', 'v', '>']$/;"	v
+expanded	a_star.py	/^expanded = [[-1, -1, -1, -1, -1, -1],$/;"	v
 expanded	bfs.py	/^expanded = [[-1, -1, -1, -1, -1, -1],$/;"	v
+found_next_step	a_star.py	/^def found_next_step( search_loc, min_steps ):$/;"	f
 found_next_step	bfs.py	/^def found_next_step( search_loc, min_steps ):$/;"	f
+get_path	a_star.py	/^def get_path():$/;"	f
 get_path	bfs.py	/^def get_path():$/;"	f
+goal	a_star.py	/^goal = [len(grid)-1, len(grid[0])-1]$/;"	v
 goal	bfs.py	/^goal = [len(grid)-1, len(grid[0])-1]$/;"	v
+grid	a_star.py	/^grid = [[0, 0, 1, 0, 0, 0],$/;"	v
 grid	bfs.py	/^grid = [[0, 0, 1, 0, 0, 0],$/;"	v
+init	a_star.py	/^init = [0, 0]$/;"	v
 init	bfs.py	/^init = [0, 0]$/;"	v
+loc	a_star.py	/^    def loc(self):$/;"	m	class:Search_Element
 loc	bfs.py	/^    def loc(self):$/;"	m	class:BFS_El
+np	a_star.py	/^import numpy as np$/;"	i
 np	bfs.py	/^import numpy as np$/;"	i
+path	a_star.py	/^path = [[' ', ' ', ' ', ' ', ' ', ' '],$/;"	v
 path	bfs.py	/^path = [[' ', ' ', ' ', ' ', ' ', ' '],$/;"	v
+reverse_delta_name	a_star.py	/^def reverse_delta_name( delta_name ):$/;"	f
 reverse_delta_name	bfs.py	/^def reverse_delta_name( delta_name ):$/;"	f
+search	a_star.py	/^def search(grid,init,goal,cost):$/;"	f
 search	bfs.py	/^def search(grid,init,goal,cost):$/;"	f
+search_motions	a_star.py	/^search_motions = [[-1, -1, -1, -1, -1, -1],$/;"	v
 search_motions	bfs.py	/^search_motions = [[-1, -1, -1, -1, -1, -1],$/;"	v
+searched_already	a_star.py	/^searched_already = [[0, 0, 0, 0, 0, 0],$/;"	v
 searched_already	bfs.py	/^searched_already = [[0, 0, 0, 0, 0, 0],$/;"	v
+set	a_star.py	/^    def set(self, path_length, r, c, h):$/;"	m	class:Search_Element
 set	bfs.py	/^    def set(self, path_length, r, c):$/;"	m	class:BFS_El
+valid_loc	a_star.py	/^def valid_loc( loc, grid ):$/;"	f
 valid_loc	bfs.py	/^def valid_loc( loc, grid ):$/;"	f
+valid_loc_reverse_path	a_star.py	/^def valid_loc_reverse_path( loc, grid ):$/;"	f	function:valid_loc
 valid_loc_reverse_path	bfs.py	/^def valid_loc_reverse_path( loc, grid ):$/;"	f	function:valid_loc
