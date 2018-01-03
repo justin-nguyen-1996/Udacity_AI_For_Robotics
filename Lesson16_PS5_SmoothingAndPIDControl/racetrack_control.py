@@ -135,14 +135,15 @@ class robot:
 
 
     def cte(self, radius):
-        if self.x < radius:
-            cte = np.sqrt( (self.x - radius)**2 + (self.y - radius)**2 ) - radius
-        elif self.x > radius * 3:
+        if self.x < radius: # left racetrack semi-circle
+            cte = np.sqrt( (self.x - radius)**2 + (self.y - radius)**2 ) - radius # distance from circle center (radius,radius)
+                                                                                  # should be equal to the radius
+        elif self.x > radius * 3: # right racetrack semi-circle
             cte = np.sqrt( (self.x - radius*3)**2 + (self.y - radius)**2 ) - radius
-        elif self.y > radius:
-            cte = self.y - 2*radius
-        else:
-            cte = -self.y
+        elif self.y > radius: # upper straightaway
+            cte = self.y - 2*radius # upper straightaway is at y = 2*radius
+        else: # lower straightaway
+            cte = -self.y # negative because move left
         return cte
     
 # ------------------------------------------------------------------------
